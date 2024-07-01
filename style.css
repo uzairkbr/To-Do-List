@@ -5,9 +5,15 @@
 }
 
 body {
-  font-family: "Josefin Sans", sans-serif;
+    font-family: "Josefin Sans", sans-serif;
     background-color: #FAFAFA;
     padding-bottom: 50px;
+}
+
+.task-checkbox-completed {
+    background: linear-gradient(#fff, #fff) padding-box,
+      linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
+    border: 2px solid transparent;
 }
 
 .main {

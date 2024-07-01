@@ -90,11 +90,13 @@ document.addEventListener("keypress", function(e) {
 
                     if (checkbox.checked) {
                         taskText.style.textDecoration = "line-through";
+                        taskText.style.opacity = "0.3";
+                        checkbox.classList.add("task-checkbox-completed");
                     } else {
                         taskText.style.textDecoration = "none";
+                        taskText.style.opacity = "1";
                     }
 
-                    filterTasks(activeFilter);
                 });
 
                 filterTasks(activeFilter);
@@ -111,6 +113,10 @@ clearCompleted.addEventListener("click", function(e) {
 
     // I want to show all the tasks to user when the updation is completed
     activeFilter = "all";
+
+    if (!tasksArray.length) {
+        tasksStatus.classList.add("hide");
+    }
 
     updateUI();
 });
@@ -139,6 +145,10 @@ function updateUI() {
 
         if (task.completed) {
             taskText.style.textDecoration = "line-through";
+            taskText.style.opacity = "0.3";
+        } else {
+            taskText.style.textDecoration = "none";
+            taskText.style.opacity = "1";
         }
 
         li.appendChild(taskText);
@@ -162,7 +172,7 @@ function updateUI() {
 
             itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
             
-            if (tasksArray.length === 0) {
+            if (!tasksArray.length) {
                 tasksStatus.classList.add("hide");
             }
 
