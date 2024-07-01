@@ -118,6 +118,7 @@ clearCompleted.addEventListener("click", function(e) {
         tasksStatus.classList.add("hide");
     }
 
+    updateFilterButton();
     updateUI();
 });
 
@@ -186,6 +187,7 @@ function updateUI() {
             // checkbox is checked, which means the task is completed.
             if (checkbox.checked) {
                 taskText.style.textDecoration = "line-through";
+                taskText.style.opacity = "0.3";
             }
 
         });
@@ -220,6 +222,7 @@ completedTasks.addEventListener("click", function(e) {
 // Function to filter tasks based on its status
 function filterTasks(filter) {
     const taskItems = document.querySelectorAll(".task-item");
+    let countItems = 0;
 
     taskItems.forEach(item => {
         const taskId = item.getAttribute("data-id");
@@ -227,10 +230,12 @@ function filterTasks(filter) {
 
         if (filter === "all") {
             item.style.display = "flex"; 
+            countItems++;
 
         } else if (filter === "active") {
             if (taskObj.active && !taskObj.completed) {
                 item.style.display = "flex"; 
+                countItems++;
 
             } else {
                 item.style.display = "none";
@@ -239,12 +244,15 @@ function filterTasks(filter) {
         } else if (filter === "completed") {
             if (taskObj.completed) {
                 item.style.display = "flex";
+                countItems++;
 
             } else {
                 item.style.display = "none";
 
             }
         }
+
+        itemsLeft.innerText = countItems === 1 ? countItems + " item left" : countItems + " items left";
     });
 
     updateFilterButton();

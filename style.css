@@ -174,3 +174,17 @@ a {
 }
 
 
+
+
+@media (max-width:600px) {
+    .container {
+        max-width: 500px;
+        width: 100%;
+        padding-inline: 20px;
+    }
+
+    .tasks-status {
+        font-size: 10px;
+        text-align: center;
+    }
+}
