@@ -2,6 +2,7 @@ const toDoList = document.querySelector(".toDo-list");
 const inputField = document.querySelector(".inputField");
 const tasksStatus = document.querySelector(".tasks-status");
 const itemsLeft = document.querySelector(".items-left");
+const taskDelete = document.querySelector(".task-delete");
 
 const inputContainer = document.querySelector(".inputContainer");
 const tasksContainer = document.querySelector(".tasks-Container");
@@ -17,6 +18,8 @@ const iconDark = document.querySelector(".icon-dark");
 
 let tasksArray = [];
 let activeFilter = "all";
+
+let checkbox;
 
 
 document.addEventListener("keypress", function(e) {
@@ -43,7 +46,7 @@ document.addEventListener("keypress", function(e) {
                 li.classList.add("task-item");
                 li.setAttribute("data-id", taskId);
 
-                const checkbox = document.createElement("input");
+                checkbox = document.createElement("input");
                 checkbox.type = "checkbox";
                 checkbox.classList.add("task-checkbox");
                 li.appendChild(checkbox);
@@ -103,7 +106,7 @@ document.addEventListener("keypress", function(e) {
             }
         }
     
-
+});
     
 // Event listener for clearing all completed tasks
 clearCompleted.addEventListener("click", function(e) {
@@ -264,28 +267,43 @@ function filterTasks(filter) {
 
 iconLight.addEventListener("click", function(){
     document.body.style.backgroundColor = "#171823";
+    console.log("Light mode switched to Dark");
     iconDark.classList.remove("hide");
     iconLight.classList.add("hide");
 
-    tasksContainer.classList.add("bg-color-black");
-    inputContainer.classList.add("bg-color-black");
-    taskItem.classList.add("bg-color-black");
-    inputField.style.backgroundColor = "#000";
-    inputCheckbox.classList.add("input-checkbox-dark");
-
-});
-
-iconDark.addEventListener("click", function(){
+    tasksContainer.classList.add("dark-mode");
+    inputContainer.classList.add("dark-mode");
+    inputField.style.backgroundColor = "black";
+    inputField.style.color = "#fff";
+    toDoList.classList.add("dark-mode");
+    inputCheckbox.style.backgroundColor ="#000";
+    tasksStatus.style.color = "#fff";
+    document.querySelector(".to-select-tasks").style.color = "#fff";
+    
+    // if (taskDelete) {
+        taskDelete.style.color  = "#fff !important";
+        // }
+        
+        
+        
+    });
+    
+    iconDark.addEventListener("click", function(){
         document.body.style.backgroundColor = "#fafafa";
         iconLight.classList.remove("hide");
         iconDark.classList.add("hide");
+        
+        tasksContainer.classList.remove("dark-mode");
+        inputContainer.classList.remove("dark-mode");
+        toDoList.classList.remove("dark-mode");
+        inputField.style.backgroundColor = "#fff";
+        inputField.style.color = "#000";
+        inputCheckbox.style.backgroundColor ="#fff";
+        document.querySelector(".to-select-tasks").style.color = "#000";
+        // taskItem.classList.remove("dark-mode");
 
-        tasksContainer.classList.remove("bg-color-black");
-        inputContainer.classList.remove("bg-color-black");
-        taskItem.classList.remove("bg-color-black");
-
-    });
 });
+
 
 
 
