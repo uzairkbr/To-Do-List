@@ -21,100 +21,98 @@ let activeFilter = "all";
 
 let checkbox;
 
-
 document.addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
+    if (e.key === "Enter") {
+        e.preventDefault();
 
-            const taskTextValue = inputField.value.trim();
+        const taskTextValue = inputField.value.trim();
 
-            if (taskTextValue !== "") {
-                
-                // adding unique id to object
-                const taskId = Date.now();
+        if (taskTextValue !== "") {
+            // adding unique id to object
+            const taskId = Date.now();
 
-                const taskObj = {
-                    id: taskId,
-                    text: taskTextValue,
-                    active: true,
-                    completed: false
-                };
+            const taskObj = {
+                id: taskId,
+                text: taskTextValue,
+                active: true,
+                completed: false
+            };
 
-                tasksArray.push(taskObj);
+            tasksArray.push(taskObj);
 
-                const li = document.createElement("li");
-                li.classList.add("task-item");
-                li.setAttribute("data-id", taskId);
+            const li = document.createElement("li");
+            li.classList.add("task-item");
+            li.setAttribute("data-id", taskId);
 
-                checkbox = document.createElement("input");
-                checkbox.type = "checkbox";
-                checkbox.classList.add("task-checkbox");
-                li.appendChild(checkbox);
+            checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.classList.add("task-checkbox");
+            li.appendChild(checkbox);
 
-                const taskText = document.createElement("span");
-                taskText.classList.add("task-text");
-                taskText.textContent = taskTextValue;
-                li.appendChild(taskText);
+            const taskText = document.createElement("span");
+            taskText.classList.add("task-text");
+            taskText.textContent = taskTextValue;
+            li.appendChild(taskText);
 
-                const deleteIcon = document.createElement("i");
-                deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
-                li.appendChild(deleteIcon);
+            const deleteIcon = document.createElement("i");
+            deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
+            li.appendChild(deleteIcon);
 
-                toDoList.appendChild(li);
+            toDoList.appendChild(li);
 
-                if (tasksArray.length !== 0) {
-                    tasksStatus.classList.remove("hide");
+            if (tasksArray.length !== 0) {
+                tasksStatus.classList.remove("hide");
+            }
+
+            inputField.value = "";
+            itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
+
+            deleteIcon.addEventListener("click", function() {
+                // Remove task from UI
+                toDoList.removeChild(li);
+
+                // Remove task from array
+                const taskId = li.getAttribute("data-id");
+                const taskIndex = tasksArray.findIndex(task => task.id == taskId);
+
+                if (taskIndex > -1) {
+                    tasksArray.splice(taskIndex, 1);
                 }
 
-                inputField.value = "";
+                if (tasksArray.length === 0) {
+                    tasksStatus.classList.add("hide");
+                }
+
                 itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
+            });
 
-                deleteIcon.addEventListener("click", function() {
-                    // Remove task from UI
-                    toDoList.removeChild(li);
+            checkbox.addEventListener("change", function() {
+                taskObj.completed = checkbox.checked;
 
-                    // Remove task from array
-                    const taskId = li.getAttribute("data-id");
-                    const taskIndex = tasksArray.findIndex(task => task.id == taskId);
+                if (checkbox.checked) {
+                    taskText.style.textDecoration = "line-through";
+                    taskText.style.opacity = "0.3";
+                    checkbox.classList.add("task-checkbox-completed");
+                } else {
+                    taskText.style.textDecoration = "none";
+                    taskText.style.opacity = "1";
+                }
+            });
 
-                    if (taskIndex > -1) {
-                        tasksArray.splice(taskIndex, 1);
-                    }
-
-                    if (tasksArray.length === 0) {
-                        tasksStatus.classList.add("hide");
-                    }
-
-                    itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
-                });
-
-                checkbox.addEventListener("change", function() {
-                    taskObj.completed = checkbox.checked;
-
-                    if (checkbox.checked) {
-                        taskText.style.textDecoration = "line-through";
-                        taskText.style.opacity = "0.3";
-                        checkbox.classList.add("task-checkbox-completed");
-                    } else {
-                        taskText.style.textDecoration = "none";
-                        taskText.style.opacity = "1";
-                    }
-
-                });
-
-                filterTasks(activeFilter);
-            }
+            filterTasks(activeFilter);
         }
-    
+    }
 });
-    
+
+
+
 // Event listener for clearing all completed tasks
 clearCompleted.addEventListener("click", function(e) {
     e.preventDefault();
 
     tasksArray = tasksArray.filter(task => !task.completed);
 
-    // I want to show all the tasks to user when the updation is completed
+    // Show all tasks to user when the update is completed
     activeFilter = "all";
 
     if (!tasksArray.length) {
@@ -127,11 +125,10 @@ clearCompleted.addEventListener("click", function(e) {
 
 
 
-// Function to updating the UI
+// Function to update the UI
 function updateUI() {
-    
     toDoList.innerHTML = "";
-    
+
     tasksArray.forEach(task => {
         const li = document.createElement("li");
         li.classList.add("task-item");
@@ -179,9 +176,7 @@ function updateUI() {
             if (!tasksArray.length) {
                 tasksStatus.classList.add("hide");
             }
-
         });
-
 
         // Event listener for checkbox change
         checkbox.addEventListener("change", function() {
@@ -191,12 +186,13 @@ function updateUI() {
             if (checkbox.checked) {
                 taskText.style.textDecoration = "line-through";
                 taskText.style.opacity = "0.3";
+            } else {
+                taskText.style.textDecoration = "none";
+                taskText.style.opacity = "1";
             }
-
         });
     });
 
-    
     itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
 }
 
@@ -209,17 +205,21 @@ allTasks.addEventListener("click", function(e) {
     filterTasks(activeFilter);
 });
 
+
 activeTasks.addEventListener("click", function(e) {
     e.preventDefault();
     activeFilter = "active";
     filterTasks(activeFilter);
 });
 
+
+
 completedTasks.addEventListener("click", function(e) {
     e.preventDefault();
     activeFilter = "completed";
     filterTasks(activeFilter);
 });
+
 
 
 // Function to filter tasks based on its status
@@ -239,19 +239,15 @@ function filterTasks(filter) {
             if (taskObj.active && !taskObj.completed) {
                 item.style.display = "flex"; 
                 countItems++;
-
             } else {
                 item.style.display = "none";
-
             }
         } else if (filter === "completed") {
             if (taskObj.completed) {
                 item.style.display = "flex";
                 countItems++;
-
             } else {
                 item.style.display = "none";
-
             }
         }
 
@@ -264,10 +260,8 @@ function filterTasks(filter) {
 
 
 // Event listeners for light and dark mode 
-
-iconLight.addEventListener("click", function(){
+iconLight.addEventListener("click", function() {
     document.body.style.backgroundColor = "#171823";
-    console.log("Light mode switched to Dark");
     iconDark.classList.remove("hide");
     iconLight.classList.add("hide");
 
@@ -276,41 +270,42 @@ iconLight.addEventListener("click", function(){
     inputField.style.backgroundColor = "black";
     inputField.style.color = "#fff";
     toDoList.classList.add("dark-mode");
-    inputCheckbox.style.backgroundColor ="#000";
+    inputCheckbox.style.backgroundColor = "#000";
     tasksStatus.style.color = "#fff";
     document.querySelector(".to-select-tasks").style.color = "#fff";
-    
-    // if (taskDelete) {
-        taskDelete.style.color  = "#fff !important";
-        // }
-        
-        
-        
+    document.querySelectorAll(".task-item").forEach(item => {
+        item.classList.add("dark-mode");
+        item.style.backgroundColor = "black";
+        item.querySelector(".task-text").style.color = "#fff";
     });
-    
-    iconDark.addEventListener("click", function(){
-        document.body.style.backgroundColor = "#fafafa";
-        iconLight.classList.remove("hide");
-        iconDark.classList.add("hide");
-        
-        tasksContainer.classList.remove("dark-mode");
-        inputContainer.classList.remove("dark-mode");
-        toDoList.classList.remove("dark-mode");
-        inputField.style.backgroundColor = "#fff";
-        inputField.style.color = "#000";
-        inputCheckbox.style.backgroundColor ="#fff";
-        document.querySelector(".to-select-tasks").style.color = "#000";
-        // taskItem.classList.remove("dark-mode");
-
 });
 
 
 
+iconDark.addEventListener("click", function() {
+    document.body.style.backgroundColor = "#fafafa";
+    iconLight.classList.remove("hide");
+    iconDark.classList.add("hide");
 
-// I want to change the color of active filter button to blue, and the rest to its default with opacity of 0.6
+    tasksContainer.classList.remove("dark-mode");
+    inputContainer.classList.remove("dark-mode");
+    toDoList.classList.remove("dark-mode");
+    inputField.style.backgroundColor = "#fff";
+    inputField.style.color = "#000";
+    inputCheckbox.style.backgroundColor = "#fff";
+    tasksStatus.style.color = "#000";
+    document.querySelector(".to-select-tasks").style.color = "#000";
+    document.querySelectorAll(".task-item").forEach(item => {
+        item.classList.remove("dark-mode");
+        item.style.backgroundColor = "#fff";
+        item.querySelector(".task-text").style.color = "#000";
+    });
+});
 
+
+
+// Function to change the color of the active filter button to blue, and the rest to its default with opacity of 0.6
 const updateFilterButton = () => {
-
     if (activeFilter === "all") {
         allTasks.style.opacity = "1";
         activeTasks.style.opacity = "0.3";
@@ -324,5 +319,4 @@ const updateFilterButton = () => {
         activeTasks.style.opacity = "0.3";
         completedTasks.style.opacity = "1";
     }
-
-}
+};
