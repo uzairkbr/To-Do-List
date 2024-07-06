@@ -134,8 +134,9 @@ clearCompleted.addEventListener("click", function(e) {
         tasksStatus.classList.add("hide");
     }
     
-    updateFilterButton();
     updateUI();
+    updateFilterButton();
+    setTasksToLocalStorage();
 });
 
 
