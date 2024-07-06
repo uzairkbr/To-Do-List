@@ -19,7 +19,6 @@ const iconDark = document.querySelector(".icon-dark");
 let tasksArray = [];
 let activeFilter = "all";
 
-let checkbox;
 
 document.addEventListener("keypress", function(e) {
     if (e.key === "Enter") {
@@ -40,24 +39,35 @@ document.addEventListener("keypress", function(e) {
 
             tasksArray.push(taskObj);
 
+            // To add the following to each list item.
+            // 1) Checkbox
+            // 2) Span ( text )
+            // 3) Icon
+            // 4) Append it to list ( unordered list )
+
+    
             const li = document.createElement("li");
             li.classList.add("task-item");
             li.setAttribute("data-id", taskId);
 
-            checkbox = document.createElement("input");
+            // 1
+            const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.classList.add("task-checkbox");
             li.appendChild(checkbox);
 
+            // 2
             const taskText = document.createElement("span");
             taskText.classList.add("task-text");
             taskText.textContent = taskTextValue;
             li.appendChild(taskText);
 
+            // 3
             const deleteIcon = document.createElement("i");
             deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
             li.appendChild(deleteIcon);
 
+            // 4
             toDoList.appendChild(li);
 
             if (tasksArray.length !== 0) {
@@ -102,6 +112,8 @@ document.addEventListener("keypress", function(e) {
             filterTasks(activeFilter);
         }
     }
+
+    setTasksToLocalStorage();
 });
 
 
@@ -110,15 +122,18 @@ document.addEventListener("keypress", function(e) {
 clearCompleted.addEventListener("click", function(e) {
     e.preventDefault();
 
+    // 1) Filter array and store all tasks which is not completed.
+    // 2) update the UI with remaining tasks.
+    
     tasksArray = tasksArray.filter(task => !task.completed);
-
-    // Show all tasks to user when the update is completed
+    
+    // show all the tasks in array ( except the completed ones ) 
     activeFilter = "all";
-
+    
     if (!tasksArray.length) {
         tasksStatus.classList.add("hide");
     }
-
+    
     updateFilterButton();
     updateUI();
 });
@@ -127,8 +142,10 @@ clearCompleted.addEventListener("click", function(e) {
 
 // Function to update the UI
 function updateUI() {
+    // reset conatiner where to display the list.
     toDoList.innerHTML = "";
 
+    // render tasks to UI
     tasksArray.forEach(task => {
         const li = document.createElement("li");
         li.classList.add("task-item");
@@ -154,6 +171,7 @@ function updateUI() {
 
         li.appendChild(taskText);
 
+        
         const deleteIcon = document.createElement("i");
         deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
         li.appendChild(deleteIcon);
@@ -177,6 +195,7 @@ function updateUI() {
                 tasksStatus.classList.add("hide");
             }
         });
+
 
         // Event listener for checkbox change
         checkbox.addEventListener("change", function() {
@@ -320,3 +339,21 @@ const updateFilterButton = () => {
         completedTasks.style.opacity = "1";
     }
 };
+
+
+function setTasksToLocalStorage() {
+    localStorage.setItem("todo", JSON.stringify(tasksArray));
+}
+
+function getTasksFromLocalStorage() {
+    const savedTasks = localStorage.getItem("todo");
+    if (savedTasks) {
+        tasksArray = JSON.parse(savedTasks);
+        updateUI();
+        activeFilter = "all";
+        filterTasks(activeFilter);
+        tasksStatus.classList.remove("hide");
+    }
+}
+
+getTasksFromLocalStorage();
