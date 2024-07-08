@@ -7,13 +7,11 @@
     --text-color-dark: #fff;
 }
 
-
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-
 
 .flex {
     display: flex;
@@ -27,25 +25,6 @@
     align-items: center;
 }
 
-body {
-    font-family: "Josefin Sans", sans-serif;
-    background-color: var(--background-color-light);
-    padding-bottom: 50px;
-}
-
-.task-checkbox-completed {
-    background: linear-gradient(#fff, #fff) padding-box,
-      linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
-    border: 2px solid transparent;
-}
-
-.main {
-    max-width: 1440px;  
-    margin: 0 auto;
-    background-image: url('images/Bitmap.jpg');
-    background-repeat: no-repeat;
-}
-
 .dark-mode {
     background-color: #000 !important;
     color: #fff !important;
@@ -55,15 +34,34 @@ body {
     opacity: 0.3;
 }
 
-
 .hide {
     display: none !important;
 }
 
+.margin-auto {
+    margin: 0 auto;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+body {
+    font-family: "Josefin Sans", sans-serif;
+    background-color: var(--background-color-light);
+}
+
+.main {
+    max-width: 1440px;  
+    
+    background-image: url('images/Bitmap.jpg');
+    background-repeat: no-repeat;
+}
+
+
 .container {
     max-width: 540px;
     width: 100%;
-    margin: 0 auto;
 }
 
 .container-content {
@@ -79,9 +77,7 @@ body {
 
 
 .logo-container {
-    align-items: center;
     justify-content: space-between;
-    margin: 0 auto;
     padding: 70px 0 40px 0;
     max-width: 540px;
     color: var(--text-color-dark);
@@ -92,12 +88,7 @@ body {
     width: 26px;
 }
 
-.iconContainer {
-    cursor: pointer;
-}
-
 .inputField {
-    /* max-width: 540px; */
     border: none;
     width: 100%;
     border-radius: 5px;
@@ -110,14 +101,9 @@ body {
     height: 1.5em;
     background-color: var(--background-color-light);
     border-radius: 50%;
-    /* vertical-align: middle; */
     border: 1px solid #ddd;
     appearance: none;
     margin-right: 24px;
-}
-
-.input-checkbox-dark {
-    background-color: var(--background-color-light);
 }
 
 .task-item {
@@ -138,7 +124,6 @@ body {
 }
 
 .task-delete {
-    /* color: #000; */
     cursor: pointer;
 }
 
@@ -147,7 +132,6 @@ body {
     background-color: var(--background-color-light);
     border: none;
     border-radius: 5px;
-
 }
 
 .toDo-list li {
@@ -157,26 +141,17 @@ body {
 
 .tasks-status {
     justify-content: space-between;
-    align-items: center;
-    color: #000;
-    max-width: 540px;
-    width: 100%;
-    font-size: 14px ;
+    color: var(--text-color-light);
+    /* max-width: 540px; */
+    /* width: 100%; */
+    /* font-size: 14px ; */
     padding: 10px 24px 10px 24px
 }
 
 
-a {
-    cursor: pointer;
-}
-
-
 .to-select-tasks {
-    justify-content: center;
-    align-items: center;
     gap: 15px;
     color:var(--text-color-light);
-    font-size: 14px;
     padding-inline: 24px;
 }
 
@@ -198,7 +173,7 @@ a {
     }
 
     .tasks-status {
-        font-size: 10px;
+        font-size: 7px;
         text-align: center;
     }
 }
