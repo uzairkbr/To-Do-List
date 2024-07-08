@@ -87,13 +87,13 @@ document.addEventListener("keypress", function(e) {
 
                 if (taskIndex > -1) {
                     tasksArray.splice(taskIndex, 1);
+                    setTasksToLocalStorage();
                 }
 
                 if (tasksArray.length === 0) {
                     tasksStatus.classList.add("hide");
                 }
 
-                setTasksToLocalStorage();
 
                 itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
             });
@@ -190,6 +190,7 @@ function updateUI() {
             const taskIndex = tasksArray.findIndex(t => t.id === task.id);
             if (taskIndex !== -1) {
                 tasksArray.splice(taskIndex, 1);
+                setTasksToLocalStorage();
             }
 
             itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
@@ -273,7 +274,9 @@ function filterTasks(filter) {
             }
         }
 
-        itemsLeft.innerText = countItems === 1 ? countItems + " item left" : countItems + " items left";
+        if (tasksArray.length) {
+            itemsLeft.innerText = countItems === 1 ? countItems + " item left" : countItems + " items left";
+        }
     });
 
     updateFilterButton();
@@ -352,10 +355,14 @@ function getTasksFromLocalStorage() {
     const savedTasks = localStorage.getItem("todo");
     if (savedTasks) {
         tasksArray = JSON.parse(savedTasks);
-        updateUI();
         activeFilter = "all";
         filterTasks(activeFilter);
-        tasksStatus.classList.remove("hide");
+        updateUI();
+        if (!tasksArray.length) {
+            tasksStatus.classList.add("hide");
+        } else {
+            tasksStatus.classList.remove("hide");
+        }
     }
 }
 
