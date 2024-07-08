@@ -27,7 +27,6 @@
     align-items: center;
 }
 
-
 body {
     font-family: "Josefin Sans", sans-serif;
     background-color: var(--background-color-light);
@@ -72,11 +71,10 @@ body {
 }
 
 .inputContainer {
-    background-color: #fff;
+    background-color: var(--background-color-light);
     padding: 20px 24px;
     border: none;
     border-radius: 5px;
-
 }
 
 
@@ -86,7 +84,7 @@ body {
     margin: 0 auto;
     padding: 70px 0 40px 0;
     max-width: 540px;
-    color: #fff;
+    color: var(--text-color-dark);
 }
 
 .icon {
@@ -110,7 +108,7 @@ body {
 .input-checkbox {
     width: 1.5em;
     height: 1.5em;
-    background-color: white;
+    background-color: var(--background-color-light);
     border-radius: 50%;
     /* vertical-align: middle; */
     border: 1px solid #ddd;
@@ -119,7 +117,7 @@ body {
 }
 
 .input-checkbox-dark {
-    background-color: #000;
+    background-color: var(--background-color-light);
 }
 
 .task-item {
@@ -146,7 +144,7 @@ body {
 
 .toDo-list {
     margin: 50px auto 16px auto;
-    background-color: #fff;
+    background-color: var(--background-color-light);
     border: none;
     border-radius: 5px;
 
@@ -177,14 +175,14 @@ a {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    color: #000;
+    color:var(--text-color-light);
     font-size: 14px;
     padding-inline: 24px;
 }
 
 
 .tasks-Container {
-    background-color: #fff;
+    background-color: var(--background-color-light);
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), /* Slight shadow */
                 0 6px 20px rgba(0, 0, 0, 0.1); /* More spread-out shadow */

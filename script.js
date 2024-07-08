@@ -286,29 +286,29 @@ function filterTasks(filter) {
 
 // Event listeners for light and dark mode 
 iconLight.addEventListener("click", function() {
-    document.body.style.backgroundColor = "#171823";
+    document.body.classList.add("dark-mode");
     iconDark.classList.remove("hide");
     iconLight.classList.add("hide");
 
-    tasksContainer.classList.add("dark-mode");
-    inputContainer.classList.add("dark-mode");
-    inputField.style.backgroundColor = "black";
-    inputField.style.color = "#fff";
-    toDoList.classList.add("dark-mode");
-    inputCheckbox.style.backgroundColor = "#000";
-    tasksStatus.style.color = "#fff";
-    document.querySelector(".to-select-tasks").style.color = "#fff";
-    document.querySelectorAll(".task-item").forEach(item => {
-        item.classList.add("dark-mode");
-        item.style.backgroundColor = "black";
-        item.querySelector(".task-text").style.color = "#fff";
-    });
+    // tasksContainer.classList.add("dark-mode");
+    // inputContainer.classList.add("dark-mode");
+    // inputField.style.backgroundColor = "black";
+    // inputField.style.color = "#fff";
+    // toDoList.classList.add("dark-mode");
+    // inputCheckbox.style.backgroundColor = "#000";
+    // tasksStatus.style.color = "#fff";
+    // document.querySelector(".to-select-tasks").style.color = "#fff";
+    // document.querySelectorAll(".task-item").forEach(item => {
+    //     item.classList.add("dark-mode");
+    //     item.style.backgroundColor = "black";
+    //     item.querySelector(".task-text").style.color = "#fff";
+    // });
 });
 
 
 
 iconDark.addEventListener("click", function() {
-    document.body.style.backgroundColor = "#fafafa";
+    document.body.classList.remove("dark-mode");
     iconLight.classList.remove("hide");
     iconDark.classList.add("hide");
 
