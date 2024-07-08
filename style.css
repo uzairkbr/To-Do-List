@@ -156,7 +156,6 @@ body {
 
 .task-checkbox {
     margin-right: 10px;
-    background-color: var(--todo-list-bg-color);
     position: absolute;
     cursor: pointer;
     appearance: none;
@@ -168,7 +167,7 @@ body {
     position: relative;
     top: 2px;
     left: -5px;
-    background-color: #fff;
+    background-color: var(--todo-list-bg-color);
     border: 1px solid #393A4B;
     border-radius: 50%;
     width: 24px;
@@ -185,14 +184,14 @@ body {
     transform: translate(-50%, -50%);
     width: 8px;
     height: 15px;
-    border-bottom: 2px solid #c52828;
-    border-right: 2px solid #ab1d1d;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
     transform: rotate(45deg);
 }
 
 .task-checkbox:checked::before {
-    background: linear-gradient(#fff, #fff) padding-box,
-        linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
+    background: linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
+    border: 1px solid transparent;
 }
 
 .tasks-status {

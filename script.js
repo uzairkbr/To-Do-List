@@ -325,6 +325,21 @@ function getTasksFromLocalStorage() {
     }
 }
 
+
+function hideCheckBox() {
+    const checkboxes = document.querySelectorAll(".task-checkbox");
+    checkboxes.forEach(checkbox => {
+        checkbox.style.opacity = 0;
+        checkbox.style.width = "0";
+        checkbox.style.height = "0";
+        checkbox.style.position = "absolute";
+        checkbox.style.left = "-9999px";
+        checkbox.style.overflow = "hidden";
+        checkbox.style.clip = "rect(0 0 0 0)";
+        checkbox.style.border = "0";
+    });
+}
+
 iconLight.addEventListener("click", function() {
     html.classList.add("dark-mode");
     iconLight.classList.add("hide");
