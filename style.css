@@ -142,9 +142,6 @@ body {
 .tasks-status {
     justify-content: space-between;
     color: var(--text-color-light);
-    /* max-width: 540px; */
-    /* width: 100%; */
-    /* font-size: 14px ; */
     padding: 10px 24px 10px 24px
 }
 
@@ -159,8 +156,8 @@ body {
 .tasks-Container {
     background-color: var(--background-color-light);
     border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), /* Slight shadow */
-                0 6px 20px rgba(0, 0, 0, 0.1); /* More spread-out shadow */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+                0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 

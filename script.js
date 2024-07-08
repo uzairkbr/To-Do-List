@@ -26,96 +26,109 @@ document.addEventListener("keypress", function(e) {
 
         const taskTextValue = inputField.value.trim();
 
-        if (taskTextValue !== "") {
-            // adding unique id to object
-            const taskId = Date.now();
+        let isAvailable = false;
 
-            const taskObj = {
-                id: taskId,
-                text: taskTextValue,
-                active: true,
-                completed: false
-            };
-
-            tasksArray.push(taskObj);
-
-            // To add the following to each list item.
-            // 1) Checkbox
-            // 2) Span ( text )
-            // 3) Icon
-            // 4) Append it to list ( unordered list )
-
-    
-            const li = document.createElement("li");
-            li.classList.add("task-item");
-            li.setAttribute("data-id", taskId);
-
-            // 1
-            const checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
-            checkbox.classList.add("task-checkbox");
-            li.appendChild(checkbox);
-
-            // 2
-            const taskText = document.createElement("span");
-            taskText.classList.add("task-text");
-            taskText.textContent = taskTextValue;
-            li.appendChild(taskText);
-
-            // 3
-            const deleteIcon = document.createElement("i");
-            deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
-            li.appendChild(deleteIcon);
-
-            // 4
-            toDoList.appendChild(li);
-
-            if (tasksArray.length !== 0) {
-                tasksStatus.classList.remove("hide");
+        tasksArray.forEach(task => {
+            if (task.text === taskTextValue) {
+                isAvailable = true;
             }
+        })
 
-            inputField.value = "";
-            itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
+        if (!isAvailable) {
 
-            deleteIcon.addEventListener("click", function() {
-                // Remove task from UI
-                toDoList.removeChild(li);
+            if (taskTextValue !== "") {
+                const taskId = Date.now();
 
-                // Remove task from array
-                const taskId = li.getAttribute("data-id");
-                const taskIndex = tasksArray.findIndex(task => task.id == taskId);
+                const taskObj = {
+                    id: taskId,
+                    text: taskTextValue,
+                    active: true,
+                    completed: false
+                };
 
-                if (taskIndex > -1) {
-                    tasksArray.splice(taskIndex, 1);
-                    setTasksToLocalStorage();
+                tasksArray.push(taskObj);
+
+                // To add the following to each list item.
+                // 1) Checkbox
+                // 2) Span ( text )
+                // 3) Icon
+                // 4) Append it to list ( unordered list )
+
+        
+                const li = document.createElement("li");
+                li.classList.add("task-item");
+                li.setAttribute("data-id", taskId);
+
+                // 1
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.classList.add("task-checkbox");
+                li.appendChild(checkbox);
+
+                // 2
+                const taskText = document.createElement("span");
+                taskText.classList.add("task-text");
+                taskText.textContent = taskTextValue;
+                li.appendChild(taskText);
+
+                // 3
+                const deleteIcon = document.createElement("i");
+                deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
+                li.appendChild(deleteIcon);
+
+                // 4
+                toDoList.appendChild(li);
+
+                if (tasksArray.length !== 0) {
+                    tasksStatus.classList.remove("hide");
                 }
 
-                if (tasksArray.length === 0) {
-                    tasksStatus.classList.add("hide");
-                }
-
-
+                inputField.value = "";
                 itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
-            });
 
-            checkbox.addEventListener("change", function() {
-                taskObj.completed = checkbox.checked;
+                deleteIcon.addEventListener("click", function() {
+                    // Remove task from UI
+                    toDoList.removeChild(li);
 
-                if (checkbox.checked) {
-                    taskText.style.textDecoration = "line-through";
-                    taskText.style.opacity = "0.3";
-                    checkbox.classList.add("task-checkbox-completed");
-                } else {
-                    taskText.style.textDecoration = "none";
-                    taskText.style.opacity = "1";
-                }
-            });
+                    // Remove task from array
+                    const taskId = li.getAttribute("data-id");
+                    const taskIndex = tasksArray.findIndex(task => task.id == taskId);
 
-            filterTasks(activeFilter);
+                    if (taskIndex > -1) {
+                        tasksArray.splice(taskIndex, 1);
+                        setTasksToLocalStorage();
+                    }
+
+                    if (tasksArray.length === 0) {
+                        tasksStatus.classList.add("hide");
+                    }
+
+
+                    itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
+                });
+
+                checkbox.addEventListener("change", function() {
+                    taskObj.completed = checkbox.checked;
+
+                    if (checkbox.checked) {
+                        taskText.style.textDecoration = "line-through";
+                        taskText.style.opacity = "0.3";
+                        checkbox.classList.add("task-checkbox-completed");
+                    } else {
+                        taskText.style.textDecoration = "none";
+                        taskText.style.opacity = "1";
+                    }
+                });
+
+                filterTasks(activeFilter);
+            }
+        } else {
+            alert("Task is already available in your Todo List");
         }
-    }
 
     setTasksToLocalStorage();
+
+}
 });
 
 
