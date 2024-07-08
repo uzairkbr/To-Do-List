@@ -1,11 +1,13 @@
 :root {
-    --background-color-light: #fafafa;
-    --text-color-light: #000;
-
-    --backgroung-color-dark: #000;
-    --body-background-color-dark: #171823;
-    --text-color-dark: #fff;
+    --background-color: #fff;
+    --text-color: #000;
 }
+
+html.dark-mode {
+    --text-color: #fff; 
+    --background-color: #000;
+} 
+
 
 * {
     padding: 0;
@@ -25,10 +27,10 @@
     align-items: center;
 }
 
-.dark-mode {
+/* .dark-mode {
     background-color: #000 !important;
     color: #fff !important;
-}
+} */
 
 .light-opacity {
     opacity: 0.3;
@@ -48,7 +50,7 @@
 
 body {
     font-family: "Josefin Sans", sans-serif;
-    background-color: var(--background-color-light);
+    background-color: var(--background-color);
 }
 
 .main {
@@ -69,7 +71,7 @@ body {
 }
 
 .inputContainer {
-    background-color: var(--background-color-light);
+    background-color: var(--background-color);
     padding: 20px 24px;
     border: none;
     border-radius: 5px;
@@ -80,7 +82,7 @@ body {
     justify-content: space-between;
     padding: 70px 0 40px 0;
     max-width: 540px;
-    color: var(--text-color-dark);
+    color: var(--background-color);
 }
 
 .icon {
@@ -90,6 +92,7 @@ body {
 
 .inputField {
     border: none;
+    background-color: var(--background-color);
     width: 100%;
     border-radius: 5px;
     outline-style: none;
@@ -99,7 +102,7 @@ body {
 .input-checkbox {
     width: 1.5em;
     height: 1.5em;
-    background-color: var(--background-color-light);
+    background-color: var(--background-color);
     border-radius: 50%;
     border: 1px solid #ddd;
     appearance: none;
@@ -116,20 +119,23 @@ body {
 
 .task-checkbox {
     margin-right: 10px;
+    color: var(--text-color);
 }
 
 .task-text {
     flex-grow: 1;
+    color: var(--text-color);
     margin-left: 10px;
 }
 
 .task-delete {
     cursor: pointer;
+    color: var(--text-color);
 }
 
 .toDo-list {
     margin: 50px auto 16px auto;
-    background-color: var(--background-color-light);
+    background-color: var(--background-color);
     border: none;
     border-radius: 5px;
 }
@@ -141,20 +147,19 @@ body {
 
 .tasks-status {
     justify-content: space-between;
-    color: var(--text-color-light);
+    color: var(--text-color);
     padding: 10px 24px 10px 24px
 }
 
 
 .to-select-tasks {
     gap: 15px;
-    color:var(--text-color-light);
     padding-inline: 24px;
 }
 
 
 .tasks-Container {
-    background-color: var(--background-color-light);
+    background-color: var(--background-color);
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
                 0 6px 20px rgba(0, 0, 0, 0.1);
