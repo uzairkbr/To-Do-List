@@ -356,4 +356,6 @@ if (localStorage.getItem("theme") === "light") {
     html.classList.remove("dark-mode");
 } else {
     html.classList.add("dark-mode");
+    iconLight.classList.add("hide");
+    iconLight.classList.remove("hide");
 }
