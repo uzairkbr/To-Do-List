@@ -93,6 +93,8 @@ document.addEventListener("keypress", function(e) {
                     tasksStatus.classList.add("hide");
                 }
 
+                setTasksToLocalStorage();
+
                 itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
             });
 
