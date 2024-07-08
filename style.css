@@ -1,12 +1,18 @@
 :root {
     --background-color: #fff;
     --text-color: #000;
-}
+    --todo-list-bg-color: #fff;
+    --bg-image: url("images/light-mode-bg.jpg");
+    --border-color-todo-li: #E3E4F1;
+} 
 
 html.dark-mode {
     --text-color: #fff; 
     --background-color: #000;
-} 
+    --todo-list-bg-color: #25273D;
+    --bg-image: url("images/dark-mode-bg.jpg");
+    --border-color-todo-li: #393A4B;
+}
 
 
 * {
@@ -48,6 +54,10 @@ html.dark-mode {
     cursor: pointer;
 }
 
+.mode-change-transition {
+    transition: background-color 0.5s, color 0.5s, background-image 0.5s;
+}
+
 body {
     font-family: "Josefin Sans", sans-serif;
     background-color: var(--background-color);
@@ -55,8 +65,7 @@ body {
 
 .main {
     max-width: 1440px;  
-    
-    background-image: url('images/Bitmap.jpg');
+    background-image: var(--bg-image);
     background-repeat: no-repeat;
 }
 
@@ -71,7 +80,7 @@ body {
 }
 
 .inputContainer {
-    background-color: var(--background-color);
+    background-color: var(--todo-list-bg-color);
     padding: 20px 24px;
     border: none;
     border-radius: 5px;
@@ -82,7 +91,7 @@ body {
     justify-content: space-between;
     padding: 70px 0 40px 0;
     max-width: 540px;
-    color: var(--background-color);
+    color: #fff;
 }
 
 .icon {
@@ -92,7 +101,7 @@ body {
 
 .inputField {
     border: none;
-    background-color: var(--background-color);
+    background-color: var(--todo-list-bg-color);
     width: 100%;
     border-radius: 5px;
     outline-style: none;
@@ -102,7 +111,7 @@ body {
 .input-checkbox {
     width: 1.5em;
     height: 1.5em;
-    background-color: var(--background-color);
+    background-color: var(--todo-list-bg-color);
     border-radius: 50%;
     border: 1px solid #ddd;
     appearance: none;
@@ -119,30 +128,33 @@ body {
 
 .task-checkbox {
     margin-right: 10px;
-    color: var(--text-color);
+    background-color: var(--todo-list-bg-color);
 }
 
 .task-text {
     flex-grow: 1;
     color: var(--text-color);
     margin-left: 10px;
+    transition: color 0.5s;
 }
 
 .task-delete {
     cursor: pointer;
     color: var(--text-color);
+    transition: color 0.5s;
 }
 
 .toDo-list {
     margin: 50px auto 16px auto;
-    background-color: var(--background-color);
+    background-color: var(--todo-list-bg-color);
     border: none;
     border-radius: 5px;
 }
 
 .toDo-list li {
-    border-bottom: 1px solid #E3E4F1;
+    border-bottom: 1px solid var(--border-color-todo-li);
     padding: 20px 24px;
+    transition: border 0.5s;
 }
 
 .tasks-status {
@@ -159,7 +171,7 @@ body {
 
 
 .tasks-Container {
-    background-color: var(--background-color);
+    background-color: var(--todo-list-bg-color);
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
                 0 6px 20px rgba(0, 0, 0, 0.1);

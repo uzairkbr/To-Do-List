@@ -11,11 +11,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>To Do List</title>
 </head>
-<body>
-    <main class="main margin-auto">
+<body class="mode-change-transition">
+    <main class="main mode-change-transition margin-auto">
         <div class="container margin-auto flex justify-center align-center">
             <div class="container-content">
-                <div class="logo-container margin-auto align-center flex">
+                <div class="logo-container mode-change-transition margin-auto align-center flex">
                     <h2 class="logo">T O D O</h2>
                     <div class="iconContainer cursor-pointer">
                         <i class="fa-regular fa-moon icon-light"></i>
@@ -23,16 +23,16 @@
                     </div>
                     
                 </div>
-                <div class="inputContainer flex justify-center align-center">
+                <div class="inputContainer mode-change-transition flex justify-center align-center">
                     <input type="checkbox" name="" id="input-checkbox" class="input-checkbox" disabled>
-                    <input type="text" placeholder="Create a new todo..." class="inputField">
+                    <input type="text" placeholder="Create a new todo..." class="inputField mode-change-transition">
                 </div>
 
-                <div class="tasks-Container">
+                <div class="tasks-Container mode-change-transition">
+                    
+                    <ul class="toDo-list mode-change-transition"> </ul>      
 
-                    <ul class="toDo-list"> </ul>      
-
-                    <div class="tasks-status flex align-center hide">
+                    <div class="tasks-status mode-change-transition flex align-center hide">
                         <p class='items-left light-opacity'>5 items left</p>
                         <div class="to-select-tasks flex align-center justify-center">
                             <a class="all-tasks cursor-pointer">All</a>
