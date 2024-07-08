@@ -109,8 +109,8 @@ body {
 }
 
 .input-checkbox {
-    width: 1.5em;
-    height: 1.5em;
+    width: 24px;
+    height: 24px;
     background-color: var(--todo-list-bg-color);
     border-radius: 50%;
     border: 1px solid #ddd;
@@ -126,15 +126,11 @@ body {
     border-bottom: 1px solid #ccc;
 }
 
-.task-checkbox {
-    margin-right: 10px;
-    background-color: var(--todo-list-bg-color);
-}
-
 .task-text {
     flex-grow: 1;
     color: var(--text-color);
-    margin-left: 10px;
+    margin-left: 40px;
+    max-width: 400px;
     transition: color 0.5s;
 }
 
@@ -155,6 +151,48 @@ body {
     border-bottom: 1px solid var(--border-color-todo-li);
     padding: 20px 24px;
     transition: border 0.5s;
+    position: relative;
+}
+
+.task-checkbox {
+    margin-right: 10px;
+    background-color: var(--todo-list-bg-color);
+    position: absolute;
+    cursor: pointer;
+    appearance: none;
+}
+
+.task-checkbox::before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: -5px;
+    background-color: #fff;
+    border: 1px solid #393A4B;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+
+.task-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 15px;
+    border-bottom: 2px solid #c52828;
+    border-right: 2px solid #ab1d1d;
+    transform: rotate(45deg);
+}
+
+.task-checkbox:checked::before {
+    background: linear-gradient(#fff, #fff) padding-box,
+        linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
 }
 
 .tasks-status {
@@ -163,12 +201,10 @@ body {
     padding: 10px 24px 10px 24px
 }
 
-
 .to-select-tasks {
     gap: 15px;
     padding-inline: 24px;
 }
-
 
 .tasks-Container {
     background-color: var(--todo-list-bg-color);
@@ -176,8 +212,6 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
                 0 6px 20px rgba(0, 0, 0, 0.1);
 }
-
-
 
 @media (max-width:600px) {
     .container {

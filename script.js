@@ -3,12 +3,11 @@ const inputField = document.querySelector(".inputField");
 const tasksStatus = document.querySelector(".tasks-status");
 const itemsLeft = document.querySelector(".items-left");
 const taskDelete = document.querySelector(".task-delete");
-
+const html = document.getElementsByTagName("html")[0];
 const inputContainer = document.querySelector(".inputContainer");
 const tasksContainer = document.querySelector(".tasks-Container");
 const taskItem = document.querySelector(".task-item");
 const inputCheckbox = document.querySelector("#input-checkbox");
-
 const allTasks = document.querySelector(".all-tasks");
 const activeTasks = document.querySelector(".active-tasks");
 const completedTasks = document.querySelector(".completed-tasks");
@@ -108,18 +107,22 @@ document.addEventListener("keypress", function(e) {
                 });
 
                 checkbox.addEventListener("change", function() {
+                    const taskId = li.getAttribute("data-id");
+                    const taskObj = tasksArray.find(task => task.id == taskId);
+                
                     taskObj.completed = checkbox.checked;
-
+                
                     if (checkbox.checked) {
                         taskText.style.textDecoration = "line-through";
                         taskText.style.opacity = "0.3";
-                        checkbox.classList.add("task-checkbox-completed");
                     } else {
                         taskText.style.textDecoration = "none";
                         taskText.style.opacity = "1";
                     }
+                
+                    setTasksToLocalStorage();
                 });
-
+        
                 filterTasks(activeFilter);
             }
         } else {
@@ -196,27 +199,17 @@ function updateUI() {
 
         // Event listener for deleting a task by clicking its icon 
         deleteIcon.addEventListener("click", function() {
-            // Removing task from UI
-            toDoList.removeChild(li);
-
-            // removing task from array
-            const taskIndex = tasksArray.findIndex(t => t.id === task.id);
-            if (taskIndex !== -1) {
-                tasksArray.splice(taskIndex, 1);
-                setTasksToLocalStorage();
-            }
-
-            itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
-            
-            if (!tasksArray.length) {
-                tasksStatus.classList.add("hide");
-            }
+            const taskId = li.getAttribute("data-id");
+            tasksArray = tasksArray.findIndex(t => t.id === task.id);
+            setTasksToLocalStorage();
+            updateUI();
         });
 
 
         // Event listener for checkbox change
         checkbox.addEventListener("change", function() {
             task.completed = checkbox.checked;
+            setTasksToLocalStorage();
 
             // checkbox is checked, which means the task is completed.
             if (checkbox.checked) {
@@ -295,24 +288,6 @@ function filterTasks(filter) {
     updateFilterButton();
 }
 
-
-const html = document.getElementsByTagName("html")[0];
-
-
-iconLight.addEventListener("click", function() {
-    html.classList.add("dark-mode");
-    iconLight.classList.add("hide");
-    iconDark.classList.remove("hide");
-})
-
-iconDark.addEventListener("click", function() {
-    html.classList.remove("dark-mode");
-    iconDark.classList.add("hide");
-    iconLight.classList.remove("hide");
-})
-
-
-
 // Function to change the color of the active filter button to blue, and the rest to its default with opacity of 0.6
 const updateFilterButton = () => {
     if (activeFilter === "all") {
@@ -350,12 +325,17 @@ function getTasksFromLocalStorage() {
     }
 }
 
-getTasksFromLocalStorage();
-
-if (localStorage.getItem("theme") === "light") {
-    html.classList.remove("dark-mode");
-} else {
+iconLight.addEventListener("click", function() {
     html.classList.add("dark-mode");
     iconLight.classList.add("hide");
+    iconDark.classList.remove("hide");
+})
+
+iconDark.addEventListener("click", function() {
+    html.classList.remove("dark-mode");
+    iconDark.classList.add("hide");
     iconLight.classList.remove("hide");
-}
+})
+
+
+getTasksFromLocalStorage();
