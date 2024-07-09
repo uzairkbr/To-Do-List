@@ -33,11 +33,6 @@ html.dark-mode {
     align-items: center;
 }
 
-/* .dark-mode {
-    background-color: #000 !important;
-    color: #fff !important;
-} */
-
 .light-opacity {
     opacity: 0.3;
 }
@@ -52,6 +47,10 @@ html.dark-mode {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.full-width {
+    width: 100%;
 }
 
 .mode-change-transition {
@@ -72,11 +71,6 @@ body {
 
 .container {
     max-width: 540px;
-    width: 100%;
-}
-
-.container-content {
-    width: 100%;
 }
 
 .inputContainer {
@@ -102,7 +96,6 @@ body {
 .inputField {
     border: none;
     background-color: var(--todo-list-bg-color);
-    width: 100%;
     border-radius: 5px;
     outline-style: none;
     font-size: 20px;
@@ -132,12 +125,15 @@ body {
     color: var(--text-color);
     margin-left: 40px;
     max-width: 400px;
-    transition: color 0.5s;
 }
 
 .task-delete {
     cursor: pointer;
     color: var(--text-color);
+}
+
+.task-text,
+.task-delete {
     transition: color 0.5s;
 }
 
@@ -216,7 +212,6 @@ body {
 @media (max-width:600px) {
     .container {
         max-width: 500px;
-        width: 100%;
         padding-inline: 20px;
     }
 
