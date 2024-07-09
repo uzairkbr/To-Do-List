@@ -53,7 +53,6 @@ document.addEventListener("keypress", function(e) {
                 // 3) Icon
                 // 4) Append it to list ( unordered list )
 
-        
                 const li = document.createElement("li");
                 li.classList.add("task-item");
                 li.setAttribute("data-id", taskId);
@@ -189,7 +188,6 @@ function updateUI() {
         }
 
         li.appendChild(taskText);
-
         
         const deleteIcon = document.createElement("i");
         deleteIcon.classList.add("fa-light", "fa-x", "task-delete");
@@ -204,7 +202,6 @@ function updateUI() {
             setTasksToLocalStorage();
             updateUI();
         });
-
 
         // Event listener for checkbox change
         checkbox.addEventListener("change", function() {
@@ -225,8 +222,6 @@ function updateUI() {
     itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length  + " items left";
 }
 
-
-
 // Event listeners for filter buttons (all, active, completed)
 allTasks.addEventListener("click", function(e) {
     e.preventDefault();
@@ -234,22 +229,17 @@ allTasks.addEventListener("click", function(e) {
     filterTasks(activeFilter);
 });
 
-
 activeTasks.addEventListener("click", function(e) {
     e.preventDefault();
     activeFilter = "active";
     filterTasks(activeFilter);
 });
 
-
-
 completedTasks.addEventListener("click", function(e) {
     e.preventDefault();
     activeFilter = "completed";
     filterTasks(activeFilter);
 });
-
-
 
 // Function to filter tasks based on its status
 function filterTasks(filter) {
@@ -306,6 +296,7 @@ const updateFilterButton = () => {
 };
 
 
+// methods for setting and getting data from localstorege
 function setTasksToLocalStorage() {
     localStorage.setItem("todo", JSON.stringify(tasksArray));
 }
@@ -324,7 +315,6 @@ function getTasksFromLocalStorage() {
         }
     }
 }
-
 
 function hideCheckBox() {
     const checkboxes = document.querySelectorAll(".task-checkbox");
@@ -352,5 +342,5 @@ iconDark.addEventListener("click", function() {
     iconLight.classList.remove("hide");
 })
 
-
+// when the page is refreshed render the tasks from localstorage.
 getTasksFromLocalStorage();
