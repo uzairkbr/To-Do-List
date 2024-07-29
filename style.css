@@ -1,224 +1,213 @@
 :root {
-    --background-color: #fff;
-    --text-color: #000;
-    --todo-list-bg-color: #fff;
-    --bg-image: url("images/light-mode-bg.jpg");
-    --border-color-todo-li: #E3E4F1;
+  --background-color: #fff;
+  --text-color: #000;
+  --todo-list-bg-color: #fff;
+  --bg-image: url("images/light-mode-bg.jpg");
+  --border-color-todo-li: #E3E4F1;
 } 
 
 html.dark-mode {
-    --text-color: #fff; 
-    --background-color: #000;
-    --todo-list-bg-color: #25273D;
-    --bg-image: url("images/dark-mode-bg.jpg");
-    --border-color-todo-li: #393A4B;
+  --text-color: #fff; 
+  --background-color: #000;
+  --todo-list-bg-color: #25273D;
+  --bg-image: url("images/dark-mode-bg.jpg");
+  --border-color-todo-li: #393A4B;
 }
 
-
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .flex {
-    display: flex;
+  display: flex;
 }
 
 .justify-center {
-    justify-content: center;
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .align-center {
-    align-items: center;
+  align-items: center;
 }
 
-.light-opacity {
-    opacity: 0.3;
+.dim-opacity {
+  opacity: 0.3;
 }
 
 .hide {
-    display: none !important;
+  display: none !important;
 }
 
-.margin-auto {
-    margin: 0 auto;
+.mx-auto {
+  margin: 0 auto;
 }
 
 .cursor-pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.full-width {
-    width: 100%;
+.w-full {
+  width: 100%;
 }
 
 .mode-change-transition {
-    transition: background-color 0.5s, color 0.5s, background-image 0.5s;
+  transition: background-color 0.5s, color 0.5s, background-image 0.5s;
 }
 
 body {
-    font-family: "Josefin Sans", sans-serif;
-    background-color: var(--background-color);
+  font-family: "Josefin Sans", sans-serif;
+  background-color: var(--background-color);
 }
 
 .main {
-    max-width: 1440px;  
-    background-image: var(--bg-image);
-    background-repeat: no-repeat;
+  max-width: 1440px;  
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
 }
 
-
 .container {
-    max-width: 540px;
+  max-width: 540px;
 }
 
 .inputContainer {
-    background-color: var(--todo-list-bg-color);
-    padding: 20px 24px;
-    border: none;
-    border-radius: 5px;
+  background-color: var(--todo-list-bg-color);
+  padding: 20px 24px;
+  border: none;
+  border-radius: 5px;
 }
 
-
 .logo-container {
-    justify-content: space-between;
-    padding: 70px 0 40px 0;
-    max-width: 540px;
-    color: #fff;
+  padding: 70px 0 40px 0;
+  max-width: 540px;
+  color: #fff;
 }
 
 .icon {
-    height: 26px;
-    width: 26px;
+  height: 26px;
+  width: 26px;
 }
 
 .inputField {
-    border: none;
-    background-color: var(--todo-list-bg-color);
-    border-radius: 5px;
-    outline-style: none;
-    font-size: 20px;
+  border: none;
+  color: var(--text-color);
+  background-color: var(--todo-list-bg-color);
+  border-radius: 5px;
+  outline-style: none;
+  font-size: 20px;
 }
 
 .input-checkbox {
-    display: inline-block;
-    width: 28px;
-    height: 27px;
-    background-color: var(--todo-list-bg-color);
-    border-radius: 50%;
-    border: 1px solid #E3E4F1;
-    appearance: none;
-    margin-right: 24px;
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  background-color: var(--todo-list-bg-color);
+  border-radius: 50%;
+  border: 1px solid #E3E4F1;
+  appearance: none;
+  margin-right: 24px;
 }
 
 .task-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid var(--border-color-todo-li);
+  padding: 20px 24px;
+  transition: border 0.5s;
+  position: relative;
 }
 
 .task-text {
-    flex-grow: 1;
-    color: var(--text-color);
-    margin-left: 40px;
-    max-width: 400px;
+  flex-grow: 1;
+  color: var(--text-color);
+  margin-left: 40px;
+  max-width: 400px;
 }
 
 .task-delete {
-    cursor: pointer;
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
 .task-text,
 .task-delete {
-    transition: color 0.5s;
+  transition: color 0.5s;
 }
 
 .toDo-list {
-    margin: 50px auto 16px auto;
-    background-color: var(--todo-list-bg-color);
-    border: none;
-    border-radius: 5px;
-}
-
-.toDo-list li {
-    border-bottom: 1px solid var(--border-color-todo-li);
-    padding: 20px 24px;
-    transition: border 0.5s;
-    position: relative;
+  margin: 50px auto 16px auto;
+  background-color: var(--todo-list-bg-color);
+  border: none;
+  border-radius: 5px;
 }
 
 .task-checkbox {
-    margin-right: 10px;
-    position: absolute;
-    cursor: pointer;
-    appearance: none;
+  margin-right: 10px;
+  position: absolute;
+  appearance: none;
 }
 
 .task-checkbox::before {
-    content: "";
-    display: inline-block;
-    position: relative;
-    top: 2px;
-    left: -5px;
-    background-color: var(--todo-list-bg-color);
-    border: 1px solid #E3E4F1;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
+  content: "";
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+  top: 2px;
+  left: -5px;
+  border-radius: 50%;
+  border: 1px solid #E3E4F1;
+  background-color: var(--todo-list-bg-color);
 }
 
-
 .task-checkbox:checked::after {
-    content: "";
-    position: absolute;
-    top: 6px;
-    left: 4px;
-    transform: translate(-50%, -50%);
-    width: 5px;
-    height: 11px;
-    border-bottom: 3px solid #fff;
-    border-right: 3px solid #fff;   
-    transform: rotate(45deg);
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 4px;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 11px;
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;   
+  transform: rotate(45deg);
 }
 
 .task-checkbox:checked::before {
-    background: linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
-    border: 1px solid transparent;
+  background: linear-gradient(to right, #55DDFF 0%, #C058F3 100%) border-box;
+  border: 1px solid transparent;
 }
 
 .tasks-status {
-    justify-content: space-between;
-    color: var(--text-color);
-    padding: 10px 24px 10px 24px
+  justify-content: space-between;
+  color: var(--text-color);
+  padding: 10px 24px 10px 24px
 }
 
 .to-select-tasks {
-    gap: 15px;
-    padding-inline: 24px;
+  gap: 15px;
+  padding-inline: 24px;
 }
 
 .tasks-Container {
-    background-color: var(--todo-list-bg-color);
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
-                0 6px 20px rgba(0, 0, 0, 0.1);
+  background-color: var(--todo-list-bg-color);
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+              0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 @media (max-width:600px) {
-    .container {
-        max-width: 500px;
-        padding-inline: 20px;
-    }
+  .container {
+    max-width: 500px;
+    padding-inline: 20px;
+  }
 
-    .tasks-status {
-        font-size: 7px;
-        text-align: center;
-    }
+  .tasks-status {
+    font-size: 7px;
+    text-align: center;
+  }
 }
 
 
