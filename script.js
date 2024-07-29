@@ -156,14 +156,9 @@ clearCompleted.addEventListener("click", function(e) {
     setTasksToLocalStorage();
 });
 
-
-
-// Function to update the UI
 function updateUI() {
-    // reset conatiner where to display the list.
     toDoList.innerHTML = "";
 
-    // render tasks to UI
     tasksArray.forEach(task => {
         const li = document.createElement("li");
         li.classList.add("task-item");
@@ -194,8 +189,7 @@ function updateUI() {
         li.appendChild(deleteIcon);
 
         toDoList.appendChild(li);
-
-        // Event listener for deleting a task by clicking its icon 
+        
         deleteIcon.addEventListener("click", function() {
             const taskId = li.getAttribute("data-id");
             tasksArray = tasksArray.findIndex(t => t.id === task.id);
@@ -203,7 +197,6 @@ function updateUI() {
             updateUI();
         });
 
-        // Event listener for checkbox change
         checkbox.addEventListener("change", function() {
             task.completed = checkbox.checked;
             setTasksToLocalStorage();
