@@ -44,10 +44,6 @@ html.dark-mode {
   display: none !important;
 }
 
-.mx-auto {
-  margin: 0 auto;
-}
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -69,10 +65,12 @@ body {
   max-width: 1440px;  
   background-image: var(--bg-image);
   background-repeat: no-repeat;
+  margin: 0 auto;
 }
 
 .container {
   max-width: 540px;
+  margin: 0 auto;
 }
 
 .inputContainer {
@@ -85,7 +83,8 @@ body {
 .logo-container {
   padding: 70px 0 40px 0;
   max-width: 540px;
-  color: #fff;
+  margin: 0 auto;
+  color: var(--background-color);
 }
 
 .icon {

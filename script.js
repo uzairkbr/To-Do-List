@@ -80,7 +80,6 @@ function renderTask(task) {
       tasksStatus.classList.add("hide");
       itemsLeft.innerText = tasksArray.length === 1 ? tasksArray.length + " item left" : tasksArray.length + " items left";
     }
-
   });
 
   filterTasks(activeFilter);

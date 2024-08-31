@@ -12,11 +12,11 @@
     <title>To Do List</title>
 </head>
 <body class="mode-change-transition">
-  <main class="main mode-change-transition mx-auto">
-    <div class="container w-full mx-auto flex justify-center align-center">
+  <main class="main mode-change-transition">
+    <div class="container w-full flex justify-center align-center">
       <div class="container-content w-full ">
 
-        <div class="logo-container mode-change-transition mx-auto align-center flex justify-between">
+        <div class="logo-container mode-change-transition align-center flex justify-between">
           <h2 class="logo">T O D O</h2>
 
           <div class="iconContainer cursor-pointer">
@@ -26,29 +26,30 @@
         </div>
 
         <div class="inputContainer mode-change-transition flex justify-center align-center">
-            <input type="checkbox" name="" id="input-checkbox" class="input-checkbox" disabled>
-            <input type="text" placeholder="Create a new todo..." class="inputField w-full  mode-change-transition">
+          <input type="checkbox" name="" id="input-checkbox" class="input-checkbox" disabled>
+          <input type="text" placeholder="Create a new todo..." class="inputField w-full  mode-change-transition">
         </div>
 
         <div class="tasks-Container mode-change-transition">
-            
-            <ul class="toDo-list mode-change-transition"> </ul>      
+          
+          <ul class="toDo-list mode-change-transition"></ul>      
 
-            <div class="tasks-status mode-change-transition flex align-center hide">
-                <p class='items-left dim-opacity'>5 items left</p>
+          <div class="tasks-status mode-change-transition flex align-center hide">
+            <p class='items-left dim-opacity'></p>
 
-                <div class="to-select-tasks flex align-center justify-center">
-                    <a class="all-tasks cursor-pointer">All</a>
-                    <a class="active-tasks dim-opacity cursor-pointer">Active</a>
-                    <a class="completed-tasks dim-opacity cursor-pointer">Completed</a>
-                </div>
-
-                <a class="clear-completed-tasks dim-opacity cursor-pointer">Clear Completed</a>
+            <div class="to-select-tasks flex align-center justify-center">
+              <a class="all-tasks cursor-pointer">All</a>
+              <a class="active-tasks dim-opacity cursor-pointer">Active</a>
+              <a class="completed-tasks dim-opacity cursor-pointer">Completed</a>
             </div>
+
+            <a class="clear-completed-tasks dim-opacity cursor-pointer">Clear Completed</a>
+          </div>
         </div>
       </div>
     </div>
   </main>
+
     <script src="script.js"></script>
 </body>
 </html>
