@@ -1,1 +1,1 @@
-[You can visit the site by clicking on the text](https://taskwizz.netlify.app/)
+Live Preview: [Todo List](https://taskwizz.netlify.app/)
